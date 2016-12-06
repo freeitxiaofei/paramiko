@@ -36,7 +36,7 @@ try:
 s = paramiko.SSHClient() #绑定连接实例对象
 s.load_system_host_keys() #加载本机HOST主机文件
 s.set_missing_host_key_policy(paramiko.AutoAddPolicy()) #
-s.connect(host,22,user,password,timeout=5)  #连接远程主机（目标ip地址、端口号、用户名、密码、超时时间）
+s.connect(hostname,22,user,password,timeout=5)  #连接远程主机（目标ip地址、端口号、用户名、密码、超时时间）
 stdin,stdout,stderr = s.exec_command(cmd) #执行命令,反馈一个元组（stdin输入信息，stdout输出信息，stderr错误信息）
 cmd_result = stdout.read(),stderr.read() #读取命令结果
 
