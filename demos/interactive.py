@@ -38,6 +38,7 @@ def interactive_shell(chan):
 
 
 def posix_shell(chan):
+    logs = open('info.log','a+')  #新建或打开一个日志文件
     import select
     
     oldtty = termios.tcgetattr(sys.stdin)
@@ -60,6 +61,8 @@ def posix_shell(chan):
                     pass
             if sys.stdin in r:
                 x = sys.stdin.read(1)
+                logs.write(x)  #获取命令到日志文件里面
+                logs.flush()
                 if len(x) == 0:
                     break
                 chan.send(x)
